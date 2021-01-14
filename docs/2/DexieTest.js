@@ -31,10 +31,12 @@ class DexieTest {
     }
     #bulkGet(db) {
         console.log('----- bulkGet()');
-        db.friends.get("山田","Andy")
+        db.friends.bulkGet(["山田","Andy","存在しない名前"])
             .then((friends)=>{
                 friends.forEach((friend)=>{
-                    console.log(friend);
+                    if(friend !== undefined ){
+                        console.log(friend);
+                    }
                 });
             })
             .catch((error)=>{
@@ -43,7 +45,7 @@ class DexieTest {
     }
     #bulkDelete(db) {
         console.log('----- bulkDelete()');
-        db.friends.delete("山田","Andy")
+        db.friends.bulkDelete("山田","Andy")
             .catch((error)=>{
                 console.error(error);
             });
